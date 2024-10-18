@@ -25,7 +25,7 @@ def train(nb_itt, train_loss, test_loss, resample_rate, display, poids,
         pred_pde1, pred_pde2, pred_pde3 = pde(pred_pde, X_train_pde, Re=Re, 
                                               x_std=x_std, y_std=y_std, u_mean=u_mean, v_mean=v_mean,
                                               p_std=p_std, t_std=t_std, u_std=u_std, v_std=v_std) 
-        loss_pde = torch.mean(torch.abs(pred_pde1)) + torch.mean(torch.abs(pred_pde2)) + torch.mean(torch.abs((pred_pde3))) #(MSE) 
+        loss_pde = torch.mean(pred_pde1**2 + pred_pde2**2 + pred_pde**2)  #(MSE) 
         
 
         # loss des points de data
@@ -47,9 +47,9 @@ def train(nb_itt, train_loss, test_loss, resample_rate, display, poids,
         # loss du pde
         test_pde = model(X_test_pde)
         test_pde1, test_pde2, test_pde3 = pde(test_pde, X_test_pde, Re=Re,
-                                              x_std=x_std, y_std=y_std, u_mean=u_mean, y_mean=v_mean,
+                                              x_std=x_std, y_std=y_std, u_mean=u_mean, v_mean=v_mean,
                                               p_std=p_std, t_std=t_std, u_std=u_std, v_std=v_std) 
-        loss_test_pde = torch.mean(torch.abs(test_pde1)) + torch.mean(torch.abs(test_pde2)) + torch.mean(torch.abs((test_pde3))) #(MSE) 
+        loss_test_pde = torch.mean(test_pde1**2 + test_pde2**2 + test_pde**2)  #(MSE) 
         
         # loss de la data
         test_data = model(X_test_data)

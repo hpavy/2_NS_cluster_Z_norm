@@ -18,19 +18,19 @@ time_start = time.time()
 
 ############# LES VARIABLES ################
 
-folder_result = '4_new_interval'  # le nom du dossier de résultat
+folder_result = '2_full_variables'  # le nom du dossier de résultat
 
 
 torch.manual_seed(42537)
 
 ##### Le modèle de résolution de l'équation de la chaleur
-nb_itt = 6000      # le nb d'epoch
-resample_rate = 3000  # le taux de resampling
+nb_itt = 5000      # le nb d'epoch
+resample_rate = 100000  # le taux de resampling
 display = 500       # le taux d'affichage
 poids = [1, 1]   # les poids pour la loss
     
-n_data = 5000         # le nb de points initiaux
-n_pde = 5000          # le nb de points pour la pde
+n_data = 20000         # le nb de points initiaux
+n_pde = 20000          # le nb de points pour la pde
 
 n_data_test = 5000
 n_pde_test  = 5000
